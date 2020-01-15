@@ -4,3 +4,6 @@ from two time series data of thermo couple
 using Moving Average, Time correlation 
 
 we calculate transfer time
+
+
+data is given as csv file
