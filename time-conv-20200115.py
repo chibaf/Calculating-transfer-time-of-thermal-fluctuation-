@@ -3,7 +3,6 @@ import sys
 import matplotlib.pyplot as plt
 
 def MovingAverage(x):  # Moving Avarage with ten terms
-  ln=10
   r=[]
   for i in range(5,len(x)-5):
     s=x[i]
