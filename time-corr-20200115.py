@@ -16,13 +16,29 @@ def MovingAverage(x):  # Moving Avarage with ten terms
     r.append(s)
   return r
   
-filename=sys.argv[1]
+def RotateLeft(x,n):  # n <= len(x)
+  r=[]
+  for i in range(0,len(x)):
+    if i+n<len(x):
+      r.append(x[i+n])
+    else:
+      r.append(x[i+n-len(x)])
+  return r
+  
+def dotproduct(x,y):  # inner product
+  r=0
+  for i in range(0,len(x)):
+    r=r+x[i]*y[i]
+  return r
+       
+filename=sys.argv[1]  # name of input file = csv file
 
 a=[]
 with open(filename, newline='') as csvfile:  #read every row of csv file
   csv1=csv.reader(csvfile)
   for row in csv1:   # make matrix with row of csv
     a.append(map(float,row))
+csvfile.close()
     
 b=[list(x) for x in list(zip(*a))]; # transpose matrix
 
@@ -53,4 +69,25 @@ plt.title("after moving avarage, Tc3")
 plt.plot(z2)
 plt.show()
 
-csvfile.close()
+# time correlation
+u=[]
+for i in range(0,len(z2)):
+  zl=RotateLeft(z2,i)
+  u.append(dotproduct(z1,zl))
+
+plt.title("time correlation of Tc2 and Tc3")
+plt.plot(u)
+plt.show()
+
+v=[]
+for i in range(0,250):
+  v.append(u[i])
+mx=max(v)
+print(mx)
+
+for i in range(0,len(v)):
+  if mx==v[i]:
+    k=i
+    break
+t2=MovingAverage(t1)
+print(t2[k]-t2[0])
