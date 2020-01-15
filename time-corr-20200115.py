@@ -15,6 +15,7 @@ def MovingAverage(x):  # Moving Avarage with ten terms
     s=s/10.0
     r.append(s)
   return r
+  
 filename=sys.argv[1]
 
 a=[]
