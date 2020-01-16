@@ -25,7 +25,7 @@ def RotateLeft(x,n):  # n <= len(x)
       r.append(x[i+n-len(x)])
   return r
   
-def dotproduct(x,y):  # inner product
+def DotProduct(x,y):  # inner product
   r=0
   for i in range(0,len(x)):
     r=r+x[i]*y[i]
@@ -73,19 +73,19 @@ plt.show()
 u=[]
 for i in range(0,len(z2)):
   zl=RotateLeft(z2,i)
-  u.append(dotproduct(z1,zl))
+  u.append(DotProduct(z1,zl))
 
 plt.title("time correlation of Tc2 and Tc3")
 plt.plot(u)
 plt.show()
 
 v=[]
-for i in range(0,250):
+for i in range(0,250):  # find the first local max
   v.append(u[i])
 mx=max(v)
 print(mx)
 
-for i in range(0,len(v)):
+for i in range(0,len(v)):   # find an index of local max
   if mx==v[i]:
     k=i
     break
